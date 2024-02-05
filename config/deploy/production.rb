@@ -60,3 +60,5 @@ server "164.90.134.172",
    auth_methods: %w(publickey password)
    # password: "please use keys"
  }
+ set :rbenv_type, :user
+ set :rbenv_ruby, '3.3.0'
