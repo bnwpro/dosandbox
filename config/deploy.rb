@@ -24,6 +24,7 @@ set :puma_error_log, "#{release_path}/log/puma.error.log"
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
+set :puma_enable_socket_service, true
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -82,7 +83,7 @@ namespace :deploy do
 			invoke 'deploy'
 		end
 	end
-	
+
 	desc "Restart Application"
 	task :restart do
 		on roles(:app), in: :sequence, wait: 5 do

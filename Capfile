@@ -30,11 +30,11 @@ install_plugin Capistrano::SCM::Git
 require "capistrano/rails"
 require "capistrano/rbenv"
 # require "capistrano/chruby"
-# require "capistrano/bundler"
+require "capistrano/bundler"
 # require "capistrano/rails/assets"
 # require "capistrano/rails/migrations"
 require "capistrano/puma"
-install_plugin Capistrano::Puma  # Default puma tasks, load_hooks: false
+install_plugin Capistrano::Puma, load_hooks: false  # Default puma tasks, load_hooks: false
 install_plugin Capistrano::Puma::Systemd
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
