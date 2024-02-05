@@ -286,6 +286,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capistrano (~> 3.10)
+  capistrano-bundler
   capistrano-rails (~> 1.6)
   capistrano-rbenv
   capistrano3-puma

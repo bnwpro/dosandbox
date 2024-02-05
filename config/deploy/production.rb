@@ -52,10 +52,11 @@
 server "164.90.134.172",
  user: "deploy",
  roles: %w{web app db},
+ primary: true,
  ssh_options: {
    user: "deploy", # overrides user setting above
    keys: %w(/home/deploy/.ssh/authorized_keys),
-   forward_agent: false,
+   forward_agent: true,
    auth_methods: %w(publickey password)
    # password: "please use keys"
  }
