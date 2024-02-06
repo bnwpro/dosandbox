@@ -9,7 +9,7 @@ server "159.89.244.66",
    user: "deploy", # overrides user setting above
    keys: %w(/home/deploy/.ssh/authorized_keys),
    forward_agent: true,
-   auth_methods: %w(password)
+   auth_methods: %w(password),
    password: "Solodeploy_99!!"
  }
 #set :rbenv_type, :user
