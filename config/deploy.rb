@@ -12,7 +12,7 @@ server "159.89.244.66",
    auth_methods: %w(publickey password)
    # password: "please use keys"
  }
-set :rbenv_type, :user
+#set :rbenv_type, :user
 set :rbenv_ruby, '3.3.0'
 
 set :application, "dosandbox"
