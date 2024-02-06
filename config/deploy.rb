@@ -22,7 +22,8 @@ set :puma_threads, [4, 16]
 set :puma_workers, 0
 
 # Default branch is :main
-ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+#ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, :main
 
 # Default deploy_to directory is /var/www/my_app_name
 set :pty, true
