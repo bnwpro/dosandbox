@@ -12,8 +12,8 @@ server "159.89.244.66",
    auth_methods: %w(publickey)
    #password: "Solodeploy_99!!"
  }
-#set :rbenv_type, :user
-#set :rbenv_ruby, '3.3.0'
+set :rbenv_type, :user
+set :rbenv_ruby, '3.3.0'
 
 set :application, "dosandbox"
 set :repo_url, "git@github.com:bnwpro/dosandbox.git"
