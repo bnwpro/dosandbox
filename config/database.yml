@@ -79,6 +79,7 @@ test:
 #
 production:
   <<: *default
-  database: dosandbox_production
-  username: dosandbox
-  password: <%= ENV["DOSANDBOX_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  #database: dosandbox_production
+  #username: dosandbox
+  #password: <%= ENV["DOSANDBOX_DATABASE_PASSWORD"] %>
