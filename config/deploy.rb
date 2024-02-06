@@ -32,9 +32,10 @@ set :use_sudo, false
 set :stage, :production
 set :deploy_via, :remote_cache
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
-set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"##{fetch(:application)}-puma.sock"
-set :puma_state, "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
+set :puma_bind, "unix://#{release_path}/tmp/sockets/#{fetch(:application)}-puma.sock"#shared_path
+set :puma_bind, "unix://#{release_path}/tmp/sockets/#{fetch(:application)}-puma.sock"#shared_path
+set :puma_state, "#{release_path}/tmp/pids/puma.state"#shared_path
+set :puma_pid, "#{release_path}/tmp/pids/puma.pid"#shared_path
 set :puma_access_log, "#{release_path}/log/puma.access.log"
 set :puma_error_log, "#{release_path}/log/puma.error.log"
 set :puma_preload_app, true
@@ -73,8 +74,8 @@ namespace :puma do
 	desc "Create Directories for Puma pids and Socket"
 	task :make_dirs do
 		on roles(:app) do
-			execute "mkdir #{shared_path}/tmp/sockets -p"
-			execute "mkdir #{shared_path}/tmp/pids -p"
+			execute "mkdir #{release_path}/tmp/sockets -p"#shared_path
+			execute "mkdir #{release_path}/tmp/pids -p"#shared_path
 		end
 	end
 	before :start, :make_dirs
