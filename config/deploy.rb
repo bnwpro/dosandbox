@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.18.0"
 
-server "164.90.134.172",
+server "159.89.244.66",
  user: "deploy",
  roles: %w{web app db},
  primary: true,
