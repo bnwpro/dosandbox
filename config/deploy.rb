@@ -7,7 +7,7 @@ server "159.89.244.66",
  primary: true,
  ssh_options: {
    user: "deploy", # overrides user setting above
-   keys: 123,#%w(~/.ssh/id_rsa.pub), #%w(/home/deploy/.ssh/authorized_keys),
+   keys: %w(~/.ssh/id_github.pub), #%w(/home/deploy/.ssh/authorized_keys),
    forward_agent: true,
    auth_methods: %w(publickey)
    #password: "Solodeploy_99!!"
