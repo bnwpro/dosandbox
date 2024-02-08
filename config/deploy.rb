@@ -17,7 +17,7 @@ set :rbenv_ruby, '3.3.0'
 
 set :application, "dosandbox"
 set :repo_url, "git@github.com:bnwpro/dosandbox.git"
-#set :user, "deploy"
+set :user, "deploy"
 set :puma_user, fetch(:user)
 set :puma_threads, [4, 16]
 set :puma_workers, 0
