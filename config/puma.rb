@@ -29,7 +29,11 @@ port ENV.fetch("PORT") { 3000 }
 environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/puma.pid" }
+pidfile ENV.fetch("PIDFILE") { "#{shared_dir}/tmp/pids/puma.pid" }
+state_path "#{shared_dir}/tmp/pids/puma.state"
+
+# Set up socket location
+bind "unix://#{shared_dir}/tmp/sockets/dosandbox-puma.sock"
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
