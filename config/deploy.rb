@@ -6,7 +6,7 @@ server "159.89.244.66",
  roles: %w{web app db},
  primary: true,
  ssh_options: {
-   #user: "deploy", # overrides user setting above
+   user: "deploy", # overrides user setting above
    keys: %w(/home/deploy/.ssh/authorized_keys),
    forward_agent: true,
    auth_methods: %w(publickey)
