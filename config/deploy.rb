@@ -1,8 +1,5 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.18.0"
-require 'capistrano/ext/multistage'
-
-
 
 set :application, "dosandbox"
 set :repo_url, "git@github.com:bnwpro/dosandbox.git"
