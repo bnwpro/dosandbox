@@ -6,7 +6,7 @@ server "159.89.244.66",
  roles: %w{web app db},
  primary: true,
  ssh_options: {
-   user: "deploy", # overrides user setting above
+   #user: "deploy", # overrides user setting above
    keys: %w(/home/deploy/.ssh/authorized_keys),
    forward_agent: true,
    auth_methods: %w(publickey)
@@ -17,7 +17,7 @@ set :rbenv_ruby, '3.3.0'
 
 set :application, "dosandbox"
 set :repo_url, "git@github.com:bnwpro/dosandbox.git"
-set :user, "deploy"
+#set :user, "deploy"
 set :puma_user, fetch(:user)
 set :puma_threads, [4, 16]
 set :puma_workers, 0
