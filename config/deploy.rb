@@ -1,19 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.18.0"
+require 'capistrano/ext/multistage'
 
-server "159.89.244.66",
- user: "deploy",
- roles: %w{web app db},
- primary: true,
- ssh_options: {
-   user: "deploy", # overrides user setting above
-   keys: %w(/home/deploy/.ssh/authorized_keys),
-   forward_agent: true,
-   auth_methods: %w(publickey)
-   #password: "Solodeploy_99!!"
- }
-set :rbenv_type, :user
-set :rbenv_ruby, '3.3.0'
+
 
 set :application, "dosandbox"
 set :repo_url, "git@github.com:bnwpro/dosandbox.git"
