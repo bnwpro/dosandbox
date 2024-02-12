@@ -10,7 +10,7 @@ set :puma_workers, 0
 
 # Default branch is :main
 #ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, :main
+set :branch, :puma
 
 # Default deploy_to directory is /var/www/my_app_name
 set :pty, true
@@ -56,7 +56,7 @@ set :keep_releases, 2
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-namespace :puma do
+=beginnamespace :puma do
 	desc "Create Directories for Puma pids and Socket"
 	task :make_dirs do
 		on roles(:app) do
@@ -99,5 +99,5 @@ namespace :deploy do
 	after :finishing, :compile_assets
 	after :finishing, :cleanup
 	after :finishing, :restart
-end
+end=end
 
