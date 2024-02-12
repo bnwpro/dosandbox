@@ -62,6 +62,7 @@ namespace :puma do
 		on roles(:app) do
 			execute "mkdir #{shared_path}/tmp/sockets -p"
 			execute "mkdir #{shared_path}/tmp/pids -p"
+			execute "mkdir #{shared_path}/tmp/foobar -p"
 		end
 	end
 	before :start, :make_dirs
