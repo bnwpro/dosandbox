@@ -1,0 +1,12 @@
+<h1>Editing topic</h1>
+
+<div class="card p-3">
+  <%= render "form", topic: @topic %>
+</div>
+
+<br>
+
+<div>
+  <%= link_to "Show this topic", @topic %> |
+  <%= link_to "Back to topics", topics_path %>
+</div>

@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="card p-5">
+
+  <h1 class="text-center">Topics (add a <%= link_to "New topic", new_topic_path %>)</h1>
+
+  <div id="topics" class="">
+    <h6><%= foo %> </h6>
+    <hr/>
+    <% @topics.each do |topic| %>
+      <%= render topic %>
+      <div class="flex mx-3">
+        <p class="">
+          <%= link_to "Edit", edit_topic_path(topic) %> |
+          <%= button_to "Destroy this topic", topic, method: :delete, class: "btn btn-sm btn-danger" %>
+          <%# link_to "Show this topic", topic %>
+        </p>
+      </div>
+      <hr/>
+    <% end %>
+  </div>
+  
+  <%# link_to "New topic", new_topic_path %>
+</div>

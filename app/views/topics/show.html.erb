@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @topic %>
+
+<div>
+  <%= edit %> |
+  <%= link_to "Back to topics", topics_path %>
+
+  <%= button_to "Destroy this topic", @topic, method: :delete, class: "btn btn-sm btn-danger mt-3" %>
+</div>

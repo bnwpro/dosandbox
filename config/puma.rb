@@ -16,6 +16,9 @@ if ENV["RAILS_ENV"] == "production"
   require "concurrent-ruby"
   worker_count = Integer(ENV.fetch("WEB_CONCURRENCY") { Concurrent.physical_processor_count })
   workers worker_count if worker_count > 1
+  state_path "/home/deploy/apps/dosandbox/shared/tmp/pids/puma.state"
+  bind "unix:///home/deploy/apps/dosandbox/shared/tmp/sockets/dosandbox-puma.sock"
+  pidfile ENV.fetch("PIDFILE") { "/home/deploy/apps/dosandbox/tmp/pids/puma.pid" }
 end
 
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
@@ -29,12 +32,13 @@ port ENV.fetch("PORT") { 3000 }
 environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "/home/deploy/apps/dosandbox/tmp/pids/puma.pid" }
-state_path "/home/deploy/apps/dosandbox/shared/tmp/pids/puma.state"
+if ENV["RAILS_ENV"] == "development"
+  pidfile ENV.fetch("PIDFILE") { "tmp/pids/puma.pid" }# { "/home/deploy/apps/dosandbox/tmp/pids/puma.pid" }
+end
+
 
 
 # Set up socket location
-bind "unix:///home/deploy/apps/dosandbox/shared/tmp/sockets/dosandbox-puma.sock"
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
