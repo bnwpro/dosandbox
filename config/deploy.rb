@@ -56,48 +56,48 @@ set :keep_releases, 2
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-=beginnamespace :puma do
-	desc "Create Directories for Puma pids and Socket"
-	task :make_dirs do
-		on roles(:app) do
-			execute "mkdir #{shared_path}/tmp/sockets -p"
-			execute "mkdir #{shared_path}/tmp/pids -p"
-			execute "mkdir #{shared_path}/tmp/foobar -p"
-		end
-	end
-	before :start, :make_dirs
-end
-
-namespace :deploy do
-	desc "Make sure local git is in sync with remote"
-	task :check_revision do
-		on roles(:app) do
-			unless `git rev-parse HEAD` == `git rev-parse origin/main`
-				puts "WARNING: HEAD is not the ame as origin/main"
-				puts "Run `git push` to sync changes"
-				exit
-			end
-		end
-	end
-
-	desc "Initial deploy"
-	task :initial do
-		on roles(:app) do
-			before 'deploy:restart', 'puma:start'
-			invoke 'deploy'
-		end
-	end
-
-	desc "Restart Application"
-	task :restart do
-		on roles(:app), in: :sequence, wait: 5 do
-			invoke!('puma:restart')
-		end
-	end
-
-	before :starting, :check_revision
-	after :finishing, :compile_assets
-	after :finishing, :cleanup
-	after :finishing, :restart
-end=end
+#=beginnamespace :puma do
+#	desc "Create Directories for Puma pids and Socket"
+#	task :make_dirs do
+#		on roles(:app) do
+#			execute "mkdir #{shared_path}/tmp/sockets -p"
+#			execute "mkdir #{shared_path}/tmp/pids -p"
+#			execute "mkdir #{shared_path}/tmp/foobar -p"
+#		end
+#	end
+#	before :start, :make_dirs
+#end
+#
+#namespace :deploy do
+#	desc "Make sure local git is in sync with remote"
+#	task :check_revision do
+#		on roles(:app) do
+#			unless `git rev-parse HEAD` == `git rev-parse origin/main`
+#				puts "WARNING: HEAD is not the ame as origin/main"
+#				puts "Run `git push` to sync changes"
+#				exit
+#			end
+#		end
+#	end
+#
+#	desc "Initial deploy"
+#	task :initial do
+#		on roles(:app) do
+#			before 'deploy:restart', 'puma:start'
+#			invoke 'deploy'
+#		end
+#	end
+#
+#	desc "Restart Application"
+#	task :restart do
+#		on roles(:app), in: :sequence, wait: 5 do
+#			invoke!('puma:restart')
+#		end
+#	end
+#
+#	before :starting, :check_revision
+#	after :finishing, :compile_assets
+#	after :finishing, :cleanup
+#	after :finishing, :restart
+#end=end
 
