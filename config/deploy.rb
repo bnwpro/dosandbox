@@ -13,10 +13,10 @@ set :puma_workers, 0
 set :branch, :puma
 
 # Default deploy_to directory is /var/www/my_app_name
-set :pty, true
+#set :pty, true
 set :use_sudo, false
 set :stage, :production
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 #set :puma_role, :app
 set :puma_bind, "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
@@ -30,11 +30,11 @@ set :puma_init_active_record, true
 #set :puma_enable_socket_service, true
 
 # Default value for :format is :airbrussh.
-# set :format, :airbrussh
+set :format, :airbrussh
 
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
-# set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
+set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
 # set :pty, true
