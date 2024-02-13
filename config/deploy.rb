@@ -11,10 +11,11 @@ set :puma_workers, 0
 # Default branch is :main
 #ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :branch, :puma
-#set :systemctl_user, :user
+set :use_sudo, false
+set :systemctl_user, :system
 # Default deploy_to directory is /var/www/my_app_name
 set :pty, true
-set :use_sudo, false
+
 set :stage, :production
 #set :deploy_via, :remote_cache
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
