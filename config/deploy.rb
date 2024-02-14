@@ -10,7 +10,7 @@ set :puma_workers, 0
 
 # Default branch is :main
 #ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, :puma
+set :branch, :main
 set :use_sudo, false
 set :systemctl_user, :system
 # Default deploy_to directory is /var/www/my_app_name
@@ -84,7 +84,7 @@ namespace :deploy do
 	desc "Make sure local git is in sync with remote"
 	task :check_revision do
 		on roles(:app) do
-			unless `git rev-parse HEAD` == `git rev-parse origin/puma`
+			unless `git rev-parse HEAD` == `git rev-parse origin/main`
 				puts "WARNING: HEAD is not the ame as origin/main"
 				puts "Run `git push` to sync changes"
 				exit
