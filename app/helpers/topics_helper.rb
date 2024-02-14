@@ -1,6 +1,6 @@
 module TopicsHelper
     def foo
-      "This text rendered from topics_helper.rb"
+      Time.now()#{}"This text rendered from topics_helper.rb"
     end
 
     def edit
