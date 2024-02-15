@@ -62,11 +62,11 @@ set :keep_releases, 2
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-#namespace :sidekiq do
+namespace :sidekiq do
 	desc "Quieting sidekiq"
 	task :quiet_sidekiq do
 		on roles(:worker) do
-			execute :service, "sidekiq:quiet"
+			invoke "sidekiq:quiet"
 		end
 	end
 
@@ -76,7 +76,7 @@ set :keep_releases, 2
 			execute :service, "sidekiq:restart"
 		end
 	end
-#end
+end
 
 desc "Check that we can access everything"
 task :write_permissions do
@@ -128,11 +128,11 @@ namespace :deploy do
 	end
 
 	#before :starting, :check_revision
-	after "deploy:starting", :quiet_sidekiq
-	after "deploy:reverted", :restart_sidekiq
+	after "deploy:starting", "sidekiq:quiet_sidekiq"
+	after "deploy:reverted", "sidekiq:restart_sidekiq"
 	after :finishing, :compile_assets
 	after :finishing, :cleanup
-	after "deploy:published", :restart_sidekiq
+	after "deploy:published", "sidekiq:restart_sidekiq"
 	#after :finishing, :restart
 end
 
