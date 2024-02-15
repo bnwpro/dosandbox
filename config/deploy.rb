@@ -66,14 +66,14 @@ set :keep_releases, 2
 	desc "Quieting sidekiq"
 	task :quiet_sidekiq do
 		on roles(:worker) do
-			execute :service, "sidekiq quiet"
+			execute :service, "sidekiq:quiet"
 		end
 	end
 
 	desc "Toggle sidekiq service"
 	task :restart_sidekiq do
 		on roles(:worker) do
-			execute :service, "sidekiq restart"
+			execute :service, "sidekiq:restart"
 		end
 	end
 #end
