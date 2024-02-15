@@ -29,6 +29,7 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 #set :puma_enable_socket_service, true
+set :sidekiq_user, :system
 set :sidekiq_roles, :worker
 set :sidekiq_default_hooks, true
 set :sidekiq_env, fetch(:rack_env, fetch(:rails_env, fetch(:stage)))
@@ -127,11 +128,11 @@ namespace :deploy do
 	end
 
 	#before :starting, :check_revision
-	#after "deploy:starting", "quiet_sidekiq"
-	#after "deploy:reverted", "restart_sidekiq"
+	after "deploy:starting", "quiet_sidekiq"
+	after "deploy:reverted", "restart_sidekiq"
 	after :finishing, :compile_assets
 	after :finishing, :cleanup
-	#after "deploy:published", "restart_sidekiq"
+	after "deploy:published", "restart_sidekiq"
 	#after :finishing, :restart
 end
 
