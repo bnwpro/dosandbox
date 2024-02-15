@@ -51,7 +51,7 @@
 # ------------------------------------
 server "159.89.244.66",
  user: "deploy",
- roles: %w{web app db},
+ roles: %w{web app db worker},
  primary: true,
  ssh_options: {
    user: "deploy", # overrides user setting above

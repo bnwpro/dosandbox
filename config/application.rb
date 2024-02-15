@@ -23,5 +23,8 @@ module Dosandbox
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # Use a real queuing backend for Active Job (and separate queues per environment).
+    config.active_job.queue_adapter = :sidekiq
+    # config.active_job.queue_name_prefix = "dosandbox_production"
   end
 end

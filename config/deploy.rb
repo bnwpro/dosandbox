@@ -9,8 +9,8 @@ set :puma_threads, [4, 16]
 set :puma_workers, 0
 
 # Default branch is :main
-#ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, :main
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+#set :branch, :main
 set :use_sudo, false
 set :systemctl_user, :system
 # Default deploy_to directory is /var/www/my_app_name
@@ -29,6 +29,10 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 #set :puma_enable_socket_service, true
+set :sidekiq_roles, :worker
+set :sidekiq_default_hooks, true
+set :sidekiq_env, fetch(:rack_env, fetch(:rails_env, fetch(:stage)))
+set :sidekiq_config_files, ['sidekiq.yml']
 
 # Default value for :format is :airbrussh.
 set :format, :airbrussh
@@ -57,6 +61,21 @@ set :keep_releases, 2
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+namespace :sidekiq do
+	desc "Quieting sidekiq"
+	task quiet_sidekiq do
+		on roles(:worker) do
+			execute :service, "sidekiq quiet"
+		end
+	end
+
+	desc "Toggle sidekiq service"
+	task :restart_sidekiq do
+		on roles(:worker) do
+			execute :service, "sidekiq restart"
+		end
+	end
+end
 
 desc "Check that we can access everything"
 task :write_permissions do
@@ -107,9 +126,12 @@ namespace :deploy do
 		end
 	end
 
-	before :starting, :check_revision
+	#before :starting, :check_revision
+	after "deploy:starting", "quiet_sidekiq"
+	after "deploy:reverted", "restart_sidekiq"
 	after :finishing, :compile_assets
 	after :finishing, :cleanup
+	after "deploy:published", "restart_sidekiq"
 	#after :finishing, :restart
 end
 
