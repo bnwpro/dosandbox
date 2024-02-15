@@ -63,7 +63,7 @@ set :keep_releases, 2
 # set :ssh_options, verify_host_key: :secure
 namespace :sidekiq do
 	desc "Quieting sidekiq"
-	task quiet_sidekiq do
+	task :quiet_sidekiq do
 		on roles(:worker) do
 			execute :service, "sidekiq quiet"
 		end
