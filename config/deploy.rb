@@ -128,11 +128,11 @@ namespace :deploy do
 	end
 
 	#before :starting, :check_revision
-	after "deploy:starting", "quiet_sidekiq"
-	after "deploy:reverted", "restart_sidekiq"
+	after "deploy:starting", "sidekiq:quiet_sidekiq"
+	after "deploy:reverted", "sidekiq:restart_sidekiq"
 	after :finishing, :compile_assets
 	after :finishing, :cleanup
-	after "deploy:published", "restart_sidekiq"
+	after "deploy:published", "sidekiq:restart_sidekiq"
 	#after :finishing, :restart
 end
 
