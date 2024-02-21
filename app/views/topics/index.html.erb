@@ -6,6 +6,8 @@
   <div id="topics" class="">
     <h6><%= foo %> : <%= Rails.application.credentials.dig(:testing, :cred) %></h6>
     <hr/>
+    <%= render "topics/form", topic: Topic.new %>
+    <hr/>
     <% @topics.each do |topic| %>
       <%= render topic %>
       <div class="flex mx-3">

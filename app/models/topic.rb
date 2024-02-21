@@ -1,3 +1,5 @@
 class Topic < ApplicationRecord
-    validates :title, presence: true
+	broadcasts_refreshes
+
+  validates :title, presence: true
 end
