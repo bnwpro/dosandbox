@@ -3,9 +3,8 @@
 <div class="card p-5">
 
   <h1 class="text-center">Topics (add a <%= link_to "New topic", new_topic_path %>)</h1>
-
   <div id="topics" class="">
-    <h6><%= foo %> </h6>
+    <h6><%= foo %> : <%= Rails.application.credentials.dig(:testing, :cred) %></h6>
     <hr/>
     <% @topics.each do |topic| %>
       <%= render topic %>
