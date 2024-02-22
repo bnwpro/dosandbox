@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
 	require 'sidekiq/web'
   root "topics#index"
   resources :topics

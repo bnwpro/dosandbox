@@ -3,7 +3,8 @@ class TopicsController < ApplicationController
 
   # GET /topics or /topics.json
   def index
-    @topics = Topic.all
+    @user = User.first
+    @topics = @user.topics
   end
 
   # GET /topics/1 or /topics/1.json
@@ -21,7 +22,7 @@ class TopicsController < ApplicationController
 
   # POST /topics or /topics.json
   def create
-    @topic = Topic.new(topic_params)
+    @topic = Topic.new(topic_params.merge(user: User.first))
 
     respond_to do |format|
       if @topic.save
@@ -65,6 +66,6 @@ class TopicsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def topic_params
-      params.require(:topic).permit(:title, :preview, :notes, :url)
+      params.require(:topic).permit(:title, :preview, :notes, :url, :user_id)
     end
 end

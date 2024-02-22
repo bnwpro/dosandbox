@@ -8,6 +8,7 @@
     <hr/>
     <%= render "topics/form", topic: Topic.new %>
     <hr/>
+    <%= turbo_stream_from @user %>
     <% @topics.each do |topic| %>
       <%= render topic %>
       <div class="flex mx-3">
