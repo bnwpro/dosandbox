@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Users</h1>
-
+<%= turbo_stream_from @project %>
 <div id="users">
   <% @users.each do |user| %>
     <%= render user %>

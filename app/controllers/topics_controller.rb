@@ -26,6 +26,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
+        #format.turbo_stream
         format.html { redirect_to topic_url(@topic), notice: "Topic was successfully created." }
         format.json { render :show, status: :created, location: @topic }
       else
@@ -39,6 +40,7 @@ class TopicsController < ApplicationController
   def update
     respond_to do |format|
       if @topic.update(topic_params)
+        #format.turbo_stream
         format.html { redirect_to topic_url(@topic), notice: "Topic was successfully updated." }
         format.json { render :show, status: :ok, location: @topic }
       else
