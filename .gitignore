@@ -40,3 +40,5 @@
 
 /node_modules
 .mise.toml
+
+dos_development_bak.sql
