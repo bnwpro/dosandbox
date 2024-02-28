@@ -1,3 +1,4 @@
 web: env RUBY_DEBUG_OPEN=true bin/rails server
+sidekiq: bundle exec sidekiq -C config/cable.yml
 js: yarn build --watch
 css: yarn watch:css
